@@ -5,16 +5,11 @@ from sklearn.ensemble import RandomForestRegressor
 
 dataframe = pandas.read_csv("ObesityDataSet_raw_and_data_sinthetic.csv")
 
+non_numerical_columns = ["Gender", "family_history_with_overweight", "FAVC", "CAEC", "SMOKE", "SCC", "CALC", "MTRANS", "NObeyesdad"]
 label_encoder = LabelEncoder()
-dataframe["Gender"] = label_encoder.fit_transform(list(dataframe["Gender"]))
-dataframe["family_history_with_overweight"] = label_encoder.fit_transform(list(dataframe["family_history_with_overweight"]))
-dataframe["FAVC"] = label_encoder.fit_transform(list(dataframe["FAVC"]))
-dataframe["CAEC"] = label_encoder.fit_transform(list(dataframe["CAEC"]))
-dataframe["SMOKE"] = label_encoder.fit_transform(list(dataframe["SMOKE"]))
-dataframe["SCC"] = label_encoder.fit_transform(list(dataframe["SCC"]))
-dataframe["CALC"] = label_encoder.fit_transform(list(dataframe["CALC"]))
-dataframe["MTRANS"] = label_encoder.fit_transform(list(dataframe["MTRANS"]))
-dataframe["NObeyesdad"] = label_encoder.fit_transform(list(dataframe["NObeyesdad"]))
+
+for column in non_numerical_columns:
+    dataframe[column] = label_encoder.fit_transform(list(dataframe[column]))
 
 dataframe["Weight"] = dataframe["Weight"] * 2.20462
 
