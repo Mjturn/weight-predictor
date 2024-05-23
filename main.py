@@ -11,6 +11,7 @@ label_encoder = LabelEncoder()
 for column in non_numerical_columns:
     dataframe[column] = label_encoder.fit_transform(list(dataframe[column]))
 
+dataframe["Height"] = dataframe["Height"] * 39.3701
 dataframe["Weight"] = dataframe["Weight"] * 2.20462
 
 X = dataframe.drop(columns=["Weight"])
